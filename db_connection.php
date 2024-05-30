@@ -1,16 +1,18 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "aabakeshop";
 
-$sName = "localhost";
-$uName = "root";
-$pass = "";
-$db_name = "aabakeshop";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-$conn = new mysqli($sName, $uName, $pass, $db_name);
-
-if ($conn->connect_errno) {
-    echo $conn->connect_error;
-} else {
-    echo "Connection successfully";
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-    
+function generateTrackingNumber() {
+    return strtoupper(bin2hex(random_bytes(8))); // Generates a 16-character tracking number
+}
+?>

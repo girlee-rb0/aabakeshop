@@ -1,45 +1,392 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewreport" content="width=device-width, initial-scale=1.0">
-	<title>AA BAKESHOP</title>
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="index.css" />
-</head>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</html>
-<body>
-    <div class="container-fluid banner">
-        <div class="row">
-            <div class="col-md-12">
-                <nav class="navbar navbar-md">
-                    <div class="navbar-brand">AA Bakeshop</div>
-                    <ul class="nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">HOME</a>
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="../assets/img/cake_logo.png" type="image/x-icon">
+
+        <!--=============== REMIXICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="css/styles.css">
+
+        <title>AA BAKESHOP</title>
+    </head>
+    <body>
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav_logo">
+                    <img src="assets/img/cake_logo.png" alt="logo image">
+                    AA BAKESHOP
+                </a>
+
+                <div class="nav_menu" id="nav-menu">
+                    <ul class="nav_list">
+                        <li class="nav_item">
+                            <a href="#home" class="nav_link active-link">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="products.html">PRODUCTS</a>
+                        <li class="nav_item">
+                            <a href="#about" class="nav_link">About us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">ABOUT</a>
+                        <li class="nav_item">
+                            <a href="#products" class="nav_link">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="register.html">SIGN UP</a>
+                        <li class="nav_item">
+                            <a href="#newsletter" class="nav_link">Subscribe</a>
                         </li>
                     </ul>
-                </nav>
+
+                    <!-- close button -->
+                    <div class="nav_close" id="nav-close">
+                        <i class="ri-close-line"></i>
+                    </div>
+
+                    <img src="assets/img/leaf-branch-4.png" alt="nav image" class="nav_img-1">
+                    <img src="assets/img/leaf-branch-3.png" alt="nav image" class="nav_img-2">
+                </div>
+
+
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="login.php" class="nav_link">Login</a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="register.php" class="nav_link">Signup</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </header>
+
+        <!--==================== MAIN ====================-->
+        <main class="main">
+            <!--==================== HOME ====================-->
+            <section class="home section" id="home">
+                <div class="home_container container grid">
+                    <img src="assets/img/home-img.png" alt="chocolate cake" class="home_img">
+
+                    <div class="home_data">
+                        <h1 class="home_title">
+                            Enjoy Delicious
+    
+                            <div>
+                                <img src="assets/img/small-cake-img.png" alt="home image">
+                                Sweet Cakes!
+                            </div>
+                        </h1>
+    
+                        <p class="home_description">
+                            Indulge in premium and elegant cakes, perfect for any occasion, guaranteed to satisfy and delight your senses.
+                        </p>
+    
+                        <a href="login.php" class="button">
+                            Order Now <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <img src="assets/img/leaf-branch-2.png" alt="home image" class="home_leaf-1">
+                <img src="assets/img/leaf-branch-4.png" alt="home image" class="home_leaf-2">
+            </section>
+
+            <!--==================== ABOUT ====================-->
+            <section class="about section" id="about">
+                <div class="about_container container grid">
+                    <div class="about_data">
+                        <span class="section_subtitle">About Us</span>
+                        <h2 class="section_title about_title">
+                            <div>
+                                We Provide
+                                <img src="assets/img/small-cake-img-1.png" alt="about image">
+                            </div>
+                            High-quality Cake
+                        </h2>
+
+                        <p class="about_description">
+                            Come try our delicious cakes! They're made with 
+                            top-notch ingredients for a heavenly taste. 
+                            Satisfy your cravings at our store today!
+                        </p>
+                    </div>
+                    <img src="assets/img/cupcakes-1.png" alt="about image" class="about_img">
+                </div>
+                <img src="assets/img/leaf-3.png" alt="about image" class="about_img-1">
+                    <img src="assets/img/leaf-3.png" alt="about image" class="about_img-2">
+                <img src=" assets/img/leaf-branch-1.png" alt="about image" class="about_leaf">
+            </section>
+
+            <!--==================== PRODUCTS ====================-->
+            <section class="popular section" id="products">
+                <span class="section_subtitle">The Best Cake</span>
+                <h2 class="section_title">Products</h2>
+
+                <div class="popular_container container grid">
+                    <article class="popular_card">
+                        <img src="assets/img/popular-img1.png" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">Chocolate Flavored Cake (Celebration Cake)</h3>
+                        <span class="popular_description">A festive cake for celebrations and parties</span>
+
+                        <span class="popular_price">₱499.00</span>
+
+                        <a href="login.php" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="popular_card">
+                        <img src="assets/img/popular-img2.png" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">Cherry Flavored Cupcake (Mini Cake)</h3>
+                        <span class="popular_description">Adorable mini cakes for individual servings.</span>
+
+                        <span class="popular_price">₱99.00</span>
+
+                         <a href="login.php" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="popular_card">
+                        <img src="assets/img/popular-img3.png" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">Blueberry Flavored Cake (Cheesecake)</h3>
+                        <span class="popular_description">A desser made with fresh soft cheese.</span>
+
+                        <span class="popular_price">₱299.00</span>
+
+                        <a href="login.phpl" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="popular_card">
+                        <img src="assets/img/birthday-cake.png" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">Strawberry Flavored Cake (Birthday Cake)</h3>
+                        <span class="popular_description">A delicious cake perfect for birthdays.</span>
+
+                        <span class="popular_price">₱599.00</span>
+
+                       <a href="login.php" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="popular_card">
+                        <img src="assets/img/wedding-cake.png" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">3 Tier Cake (Wedding Cake)</h3>
+                        <span class="popular_description">An elegant cake for weddings and special occasions.</span>
+
+                        <span class="popular_price">₱1299.00</span>
+
+                         <a href="login.php" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="popular_card">
+                        <img src="assets/img/monogram.png" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">R-Shaped Cake (Monogram Cake)</h3>
+                        <span class="popular_description">A personalized cakes with monogram design.</span>
+
+                        <span class="popular_price">₱399.00</span>
+
+                        <a href="login.php" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="popular_card">
+                        <img src="assets/img/MOCHA.png" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">Mocha Flavored Cake (Round Cake)</h3>
+                        <span class="popular_description">A classic round mocha flavored cake.</span>
+
+                        <span class="popular_price">₱299.00</span>
+
+                        <a href="login.php" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+                        
+                    </article>
+                    <article class="popular_card">
+                        <img src="assets/img/slicecd.jpg" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">Yema Cake (Sliced Cake)</h3>
+                        <span class="popular_description">A classic yema flavored cake.</span>
+
+                        <span class="popular_price">₱149.00</span>
+
+                        <a href="login.php" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+                    </article>
+
+                    <article class="popular_card">
+                        <img src="assets/img/valentine.png" alt="popular image" class="popular_img">
+
+                        <h3 class="popular_name">Heart-Shaped Cake (Valentine's Cake)</h3>
+                        <span class="popular_description">A special cake made with love for valentine's day.</span>
+
+                        <span class="popular_price">₱599.00</span>
+
+                        <a href="login.php" class="popular_button" role="button">
+                            <i class="ri-shopping-bag-line"></i>
+                        </a>
+
+                    </article>
+                </div>
+
+            </section>
+
+
+            
+            <!--==================== NEWSLETTER ====================-->
+            <section class="newsletter section" id="newsletter">
+                <div class="newsletter_container container">
+                    <div class="newsletter_content grid">
+                        <img src="assets/img/newsletter-img.png" alt="newsletter image" class="newsletter_img">
+                        <div class="newsletter_data">
+                            <span class="section_subtitle">Newsletter</span>
+                            <h2 class="section_title">
+                                Subscribe For <br>
+                                Offer Updates
+                            </h2>
+                            <form action="" class="newsletter_form">
+                                <input type="email" placeholder="Enter email" class="newsletter_input">
+
+                                <button class="button newsletter_button">
+                                    Subscribe <i class="ri-send-plane-line"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer">
+            <div class="footer_container container grid">
+                <div>
+                    <a href="#" class="footer_logo">
+                        <img src="assets/img/cake_logo.png" alt="logo image">
+                        AABakeshop
+                    </a>
+
+                    <p class="footer_description">
+                        AA Bakeshop is not just an <br> 
+                        ordinary bakeshop. <br>
+                        Every cake we make <br>
+                        is made with love.
+                    </p>
+                </div>
+                <div class="footer_content">
+                    <div>
+                        <h3 class="footer_title">Main Menu</h3>
+
+                        <ul class="footer_links">
+                            <li>
+                                <a href="#about" class="footer_link">About</a>
+                            </li>
+                            <li>
+                                <a href="#Products" class="footer_link">Menus</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer_link">Offer</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer_link">Events</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="footer_title">Information</h3>
+
+                        <ul class="footer_links">
+                            <li>
+                                <a href="#" class="footer_link">Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="#" class="footer_link">Customers Feedback</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="footer_title">Address</h3>
+
+                        <ul class="footer_links">
+                            <li class="footer_information">
+                                123 Street  <br>
+                                Polangui, Albay
+                            </li>
+                            <li class="footer_information">
+                                8AM - 4PM
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="footer_title">Social Media</h3>
+
+                        <ul class="footer_social">
+                            <a href="https://www.facebook.com/" target="_blank" class="footer_social-link">
+                                <i class="ri-facebook-circle-fill"></i>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" class="footer_social-link">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                            <a href="https://twitter.com/" target="_blank" class="footer_social-link">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                <img src="assets/img/leaf-3.png" alt="footer image" class="footer_leaf-small">
+                <img src="assets/img/leaf-branch-4.png" alt="footer image" class="footer_leaf">
             </div>
-            <div class="col-md-8 offset-md-2 info">
-                <h1 class="text-center">Satisfy your sweet tooth!</h1>
-                <p class="text-center">
-                    "Indulge in premium and elegant cakes, perfect for any occasion, guaranteed to satisfy and delight your senses."
-                </p>
-                <a href="order.html" class="btn btn-md text-center">Order Now</a>
+            <div class="footer_info container">
+                <div class="footer_card">
+                    <img src="assets/img/footer-card-1.png" alt="footer image">
+                    <img src="assets/img/footer-card-2.png" alt="footer image">
+                    <img src="assets/img/footer-card-3.png" alt="footer image">
+                    <img src="assets/img/footer-card-4.png" alt="footer image">
+                </div>
+
+                <span class="footer_copy">
+                    &#169; AA BAKESHOP. 2024
+                </span>
             </div>
-        </div>
-    </div>
-</body>
+        </footer>
+
+        <script src="assets/js/main.js"></script>
+       
+
+        <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-line"></i>
+        </a>
+
+        <!--=============== SCROLLREVEAL ===============-->
+        <script src="../assets/js/ScrollReveal.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="../assets/js/main.js"></script>
+        <script>
+        function toggleCart() {
+            var cart = document.getElementById("cart");
+            cart.classList.toggle("active");
+        }
+    </script>
+    </body>
 </html>
