@@ -14,7 +14,6 @@ checkAdminLogin();
     <link rel="stylesheet" href="../css/styles.css">
     <title>Admin Sales Report</title>
     <style>
-    
         table {
             width: 100%;
             border-collapse: collapse;
@@ -71,14 +70,13 @@ checkAdminLogin();
                         <a href="order.php" class="nav_link">Orders</a>
                     </li>
                     <li class="nav_item">
-                        <a href="sales.php" class="nav_link active-link">Sales</a>
+                        <a href="sales.php" class="nav_link">Sales</a>
                     </li>
                     <li class="nav_item">
-                        <a href="transaction.php" class="nav_link ">Transaction</a>
+                        <a href="transaction.php" class="nav_link active-link">Transaction</a>
                     </li>
-
                     <li class="nav_item">
-                        <a href="inventory.php" class="nav_link ">Inventory</a>
+                        <a href="inventory.php" class="nav_link">Inventory</a>
                     </li>
                 </ul>
                 <div class="nav_close" id="nav-close">
@@ -91,70 +89,48 @@ checkAdminLogin();
         </nav>
     </header>
 
-    <div class="container">
-        <h1>Sales Report</h1>
-
-        <!-- Filter Form -->
+    <main>
+        <h1>Transaction Report</h1>
         <div class="filter-form">
-            <form method="GET" action="sales.php">
-                <label for="filter_date">Filter by Date:</label>
-                <input type="date" id="filter_date" name="filter_date">
-                <button type="submit">Filter</button>
-                <button type="button" onclick="window.location.href='sales.php'">Clear Filter</button>
-            </form>
+            <!-- Add any filter form here if needed -->
         </div>
-
         <table>
             <thead>
                 <tr>
-                    <th>Order Date</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
+                    <th>User ID</th>
+                    <th>Payment Amount</th>
+                    <th>Gcash Name</th>
+                    <th>Gcash Number</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // Include the database connection file
-                include_once '../db_connection.php';
+                // Include your database connection file
 
-                // SQL query to fetch sales data
-                $filter_date = isset($_GET['filter_date']) ? $_GET['filter_date'] : '';
-                $sql = "SELECT o.order_date, p.product_name, o.quantity, o.price, (o.quantity * o.price) as subtotal
-                        FROM orders o
-                        JOIN products p ON o.product_id = p.product_id";
+                // Fetch transaction data from the orders table
+                $query = "SELECT user_id, order_date, payment_amount, gcash_name, gcash_number FROM orders";
+                $result = mysqli_query($conn, $query);
 
-                if ($filter_date) {
-                    $sql .= " WHERE DATE(o.order_date) = '$filter_date'";
-                }
-
-                $result = $conn->query($sql);
-                $total_sales = 0;
-
-                if ($result->num_rows > 0) {
-                    // Output data of each row
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>".$row["order_date"]."</td>";
-                        echo "<td>".$row["product_name"]."</td>";
-                        echo "<td>".$row["quantity"]."</td>";
-                        echo "<td>".$row["price"]."</td>";
-                        echo "<td>".$row["subtotal"]."</td>";
-                        echo "</tr>";
-                        $total_sales += $row["subtotal"];
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<tr>';
+                        echo '<td>' . htmlspecialchars($row['user_id']) . '</td>';
+                        echo '<td>' . htmlspecialchars(number_format($row['payment_amount'], 2)) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['gcash_name']) . '</td>';
+                        echo '<td>' . htmlspecialchars($row['gcash_number']) . '</td>';
+                        echo '</tr>';
                     }
                 } else {
-                    echo "<tr><td colspan='5'>No sales data found</td></tr>";
+                    echo '<tr><td colspan="5">No transactions found.</td></tr>';
                 }
-                $conn->close();
+
+                // Close the database connection
+                mysqli_close($conn);
                 ?>
             </tbody>
         </table>
-        <div class="total-sales">
-            Total Sales: <?php echo $total_sales; ?>
-        </div>
-    </div>
+        <!-- If needed, add the total sales calculation here -->
+    </main>
 
     <script src="../assets/js/main.js"></script>
 </body>

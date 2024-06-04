@@ -1,3 +1,9 @@
+<?php
+include '../db_connection.php'; // Ensure this path is correct
+include 'admin_auth.php';
+
+checkAdminLogin();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +64,7 @@
             <div class="nav_menu" id="nav-menu">
                 <ul class="nav_list">
                     <li class="nav_item">
-                        <a href="index.php" class="nav_link">Home</a>
+                        <a href="index.php" class="nav_link active-link">Home</a>
                     </li>
                     <li class="nav_item">
                         <a href="products.php" class="nav_link">Products</a>
@@ -68,6 +74,14 @@
                     </li>
                     <li class="nav_item">
                         <a href="sales.php" class="nav_link">Sales</a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="transaction.php" class="nav_link">Transaction</a>
+                    </li>
+
+                    <li class="nav_item">
+                        <a href="inventory.php" class="nav_link">Inventory</a>
                     </li>
                 </ul>
                 <div class="nav_close" id="nav-close">
@@ -95,7 +109,7 @@
                 $year_sales = $conn->query("SELECT SUM(subtotal) as total_sales FROM orders WHERE YEAR(order_date) = YEAR(CURDATE())")->fetch_assoc()['total_sales'];
                 ?>
                 <p>Today: <?php echo $today_sales ?: 0; ?></p>
-                <p>This Week: <?php echo $week_sales ?: 0; ?></p>
+                <p>This Week: <?php echo $today_sales ?: 0; ?></p>
                 <p>This Month: <?php echo $month_sales ?: 0; ?></p>
                 <p>This Year: <?php echo $year_sales ?: 0; ?></p>
             </div>
@@ -150,7 +164,7 @@
                 <h2>Inventory Alerts</h2>
                 <ul class="list">
                     <?php
-                    $low_stock_products = $conn->query("SELECT product_name, stock FROM products WHERE stock < 10");
+                    $low_stock_products = $conn->query("SELECT product_name, stock FROM products WHERE stock <= 10");
                     if ($low_stock_products->num_rows > 0) {
                         while ($product = $low_stock_products->fetch_assoc()) {
                             echo "<li>{$product['product_name']} - Stock: {$product['stock']}</li>";
