@@ -57,6 +57,41 @@ checkAdminLogin();
         .total-row td {
             font-weight: bold;
         }
+
+        label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Clear Search button */
+button[type="button"] {
+    background-color: #f44336;
+}
+
+button[type="button"]:hover {
+    background-color: #da190b;
+}
+    </style>
     </style>
 </head>
 <body>
@@ -107,13 +142,21 @@ checkAdminLogin();
     
     <div class="container">
         <h1>List of Orders</h1>
-        
+
         <!-- Filter Form -->
         <form method="GET" action="">
             <label for="filter-date">Filter by date:</label>
-            <input type="date" name="filter_date" id="filter-date" required>
+            <input type="date" name="filter_date" id="filter-date" value="<?php echo htmlspecialchars(isset($_GET['filter_date']) ? $_GET['filter_date'] : ''); ?>">
             <button type="submit">Filter</button>
             <button type="button" onclick="window.location.href='order.php'">Clear Filter</button>
+        </form>
+
+        <!-- Search Form -->
+        <form method="GET" action="">
+            <label for="search-query">Search bar:</label>
+            <input type="text" name="search_query" id="search-query" value="<?php echo htmlspecialchars(isset($_GET['search_query']) ? $_GET['search_query'] : ''); ?>">
+            <button type="submit">Search</button>
+            <button type="button" onclick="window.location.href='order.php'">Clear Search</button>
         </form>
 
         <table>
@@ -135,16 +178,26 @@ checkAdminLogin();
                 <?php
                 // Include the database connection file
                 include_once '../db_connection.php';
-                
+
                 // Initialize variables
                 $filter_date = isset($_GET['filter_date']) ? $_GET['filter_date'] : '';
+                $search_query = isset($_GET['search_query']) ? $_GET['search_query'] : '';
+
+                // Base SQL query
                 $sql = "SELECT o.order_id, o.user_id, o.product_id, p.product_name, o.quantity, o.price, o.order_date, o.tracking_number, o.status, (o.quantity * o.price) as subtotal
                         FROM orders o
                         JOIN products p ON o.product_id = p.product_id";
-                
+
+                // Add filtering conditions
+                $conditions = [];
                 if ($filter_date) {
-                    // Add filter to the SQL query
-                    $sql .= " WHERE DATE(o.order_date) = '$filter_date'";
+                    $conditions[] = "DATE(o.order_date) = '$filter_date'";
+                }
+                if ($search_query) {
+                    $conditions[] = "(p.product_name LIKE '%$search_query%' OR o.tracking_number LIKE '%$search_query%')";
+                }
+                if (!empty($conditions)) {
+                    $sql .= " WHERE " . implode(' AND ', $conditions);
                 }
 
                 $result = $conn->query($sql);
