@@ -109,7 +109,7 @@ checkAdminLogin();
                 $year_sales = $conn->query("SELECT SUM(subtotal) as total_sales FROM orders WHERE YEAR(order_date) = YEAR(CURDATE())")->fetch_assoc()['total_sales'];
                 ?>
                 <p>Today: <?php echo $today_sales ?: 0; ?></p>
-                <p>This Week: <?php echo $today_sales ?: 0; ?></p>
+                <p>This Week: <?php echo $week_sales ?: 0; ?></p>
                 <p>This Month: <?php echo $month_sales ?: 0; ?></p>
                 <p>This Year: <?php echo $year_sales ?: 0; ?></p>
             </div>
