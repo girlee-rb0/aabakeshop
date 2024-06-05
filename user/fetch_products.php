@@ -2,8 +2,15 @@
 // Database connection
 include '../db_connection.php'; // Ensure this file connects to your database
 
-// Fetch product data
-$query = "SELECT product_id, product_name, description, price, product_image FROM products";
+// Initialize the query
+$query = "SELECT product_id, product_name, description, price, product_image, properties FROM products";
+
+// Check if there is a search term
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $searchTerm = $conn->real_escape_string($_GET['search']);
+    $query .= " WHERE product_name LIKE '%$searchTerm%' OR description LIKE '%$searchTerm%' OR properties LIKE '%$searchTerm%'";
+}
+
 $result = $conn->query($query);
 
 $products = [];
