@@ -92,32 +92,50 @@ checkAdminLogin();
     <main>
         <h1>Transaction Report</h1>
         <div class="filter-form">
+        <form method="GET" action="">
+                <label for="filter_date">Select Date:</label>
+                <input type="date" id="filter_date" name="filter_date" value="<?php echo isset($_GET['filter_date']) ? $_GET['filter_date'] : ''; ?>">
+                <button type="submit">Filter</button>
+                <button type="button" onclick="window.location.href='transaction.php'">Clear Filter</button>
+            </form>
             <!-- Add any filter form here if needed -->
         </div>
         <table>
             <thead>
                 <tr>
                     <th>User ID</th>
-                    <th>Payment Amount</th>
                     <th>Gcash Name</th>
                     <th>Gcash Number</th>
+                    <th>Payment Amount</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                // Include your database connection file
+            <?php
+                $filter_date = isset($_GET['filter_date']) ? $_GET['filter_date'] : '';
 
-                // Fetch transaction data from the orders table
+                // SQL query to fetch transaction data with optional date filter
                 $query = "SELECT user_id, order_date, payment_amount, gcash_name, gcash_number FROM orders";
-                $result = mysqli_query($conn, $query);
+                if ($filter_date) {
+                    $query .= " WHERE DATE(order_date) = ?";
+                }
+             
+
+                $stmt = $conn->prepare($query);
+
+                if ($filter_date) {
+                    $stmt->bind_param("s", $filter_date);
+                }
+
+                $stmt->execute();
+                $result = $stmt->get_result();
 
                 if ($result && mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<tr>';
                         echo '<td>' . htmlspecialchars($row['user_id']) . '</td>';
-                        echo '<td>' . htmlspecialchars(number_format($row['payment_amount'], 2)) . '</td>';
                         echo '<td>' . htmlspecialchars($row['gcash_name']) . '</td>';
                         echo '<td>' . htmlspecialchars($row['gcash_number']) . '</td>';
+                        echo '<td>' . htmlspecialchars(number_format($row['payment_amount'], 2)) . '</td>';
                         echo '</tr>';
                     }
                 } else {
